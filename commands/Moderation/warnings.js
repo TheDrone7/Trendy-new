@@ -30,18 +30,18 @@ class warningCommand extends Command{
             let warncol = db.collection('warnings')
             let embed = new discord.RichEmbed()
             embed.setTitle(`Warnings List of ${user.displayName}`)
-            .setFooter("As of ")
+            .setFooter("As of ",this.client.user.avatarURL)
             .setTimestamp()
             .setThumbnail(this.client.user.avatarURL)
             warncol.find({'user':user.id},{sort: {time: 1}}).toArray().then(warnlist=>{
                 if(warnlist.length > 0){
                     let i = 1
+                    embed.addBlankField().addBlankField(true)
                     warnlist.forEach(warn=>{
+                        embed.addField(i.toString()+") By:    " + warn.mod, "\n**Reason** :    *" + warn.reason +"*")
                         embed.addBlankField()
-                        embed.addField(i.toString()+") By:    " + warn.mod, "\n**Reason** : " + warn.reason)
                         i++
                     })
-                    //embed.fields.pop()
                     embed.setColor("RED")
                 }
                 else{
