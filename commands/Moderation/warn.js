@@ -19,16 +19,15 @@ class warnCommand extends Command{
                 type: 'member',
                 prompt: 'Who do you want to warn?'
             },{
-                key: 'reas',
+                key: 'reason',
                 type: 'string',
-                prompt: 'Why would you want to warn them?',
-                default: 'for no reason'
+                prompt: 'Why would you want to warn them?'
             }],
             examples: ['..warn @HS for being a noob.','..warn @HS for destroying others\' lives.']
         })
     }
 
-    run(msg, {user, reas}){
+    run(msg, {user, reason}){
         mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:26658/trendy`,{useNewUrlParser: true},(err, dbo)=>{
             let db = dbo.db('trendy')
             let warncol = db.collection('warnings')
@@ -36,7 +35,7 @@ class warnCommand extends Command{
                 'user': user.id,
                 'mod': msg.author.id,
                 'time': Date.now(),
-                'reason':reas
+                'reason':reason
             }
             warncol.insertOne(newWarnDoc,(error, result)=>{
                 if(error){
@@ -48,7 +47,7 @@ class warnCommand extends Command{
                     .setTitle(`Warn`)
                     .addField('User',`\t${user}`, true)
                     .addField('By',`\t${msg.member}`, true)
-                    .addField('Reason',`\t${reas}`, true)
+                    .addField('Reason',`\t${reason}`, true)
 
                     msg.channel.send(embed).then(message=>{
                         message.react('☑')
