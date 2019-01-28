@@ -33,7 +33,7 @@ class warnCommand extends Command{
             let warncol = db.collection('warnings')
             let newWarnDoc = {
                 'user': user.id,
-                'mod': msg.author.id,
+                'mod': msg.member.displayName,
                 'time': Date.now(),
                 'reason':reason
             }
