@@ -45,9 +45,8 @@ class warningCommand extends Command{
                 else{
                     embed.setDescription("The user currently has no warnings")
                 }
+                msg.embed(embed)
             })
-
-            msg.embed(embed)
         })
     }
 
