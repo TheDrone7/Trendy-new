@@ -41,9 +41,11 @@ class warningCommand extends Command{
                         embed.addBlankField()
                     })
                     embed.fields.pop()
+                    embed.setColor("RED")
                 }
                 else{
                     embed.setDescription("The user currently has no warnings")
+                    embed.setColor("GREEN")
                 }
                 msg.embed(embed)
             })
