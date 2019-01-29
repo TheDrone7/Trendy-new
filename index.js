@@ -63,6 +63,7 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
         let servcol = dbo.collection('servdata')
         let usercol = dbo.collection('userdata')
         let coolcol = dbo.collection('cooldown')
+        let mutecol = dbo.collection('mutes')
         let userdata;
         let servdata;
         let cooldata;
@@ -110,8 +111,35 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
                 }
             })
 
+            client.setInterval(()=>{
+                mutecol.find().toArray().then(obj=>{
+                    obj.forEach(mute=>{
+                        if(Date.now() > mute.duration){
+                            let muterole = client.guilds.get(mute.server).roles.filter(rol=> rol.name.toLowerCase().indexOf("muted") > -1).array()[0]
+                            mutecol.deleteOne(mute,(error, result)=>{
+                                if(error)
+                                {
+                                    console.error(error)
+                                    console.log("error")
+                                }
+                                else{
+                                    if(muterole)
+                                    {
+                                        console.log(muterole.name)
+                                        client.guilds.get(mute.server).members.get(mute.user).removeRole(muterole).then(mem=>{
+                                            mem.send(`You have been unmuted in **${mem.guild.name}**.`).catch(console.error).then(console.log("Unmuted."))
+                                        })
+                                    }
+                                }
+                            })
+                        }
+                    })
+                })
+            },10000)
+
             // Update guilds and users info
             client.setInterval(() => {
+
                 client.guilds.forEach(guild => {
 
                     let coolDoc = {

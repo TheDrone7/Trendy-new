@@ -34,6 +34,7 @@ class warnCommand extends Command{
             let newWarnDoc = {
                 'user': user.id,
                 'mod': msg.member.displayName,
+                'server':msg.guild.id,
                 'time': Date.now(),
                 'reason':reason
             }

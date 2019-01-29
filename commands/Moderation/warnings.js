@@ -33,7 +33,7 @@ class warningCommand extends Command{
             .setFooter("As of ",this.client.user.avatarURL)
             .setTimestamp()
             .setThumbnail(this.client.user.avatarURL)
-            warncol.find({'user':user.id},{sort: {time: 1}}).toArray().then(warnlist=>{
+            warncol.find({'user':user.id,'server':msg.guild.id},{sort: {time: 1}}).toArray().then(warnlist=>{
                 if(warnlist.length > 0){
                     let i = 1
                     embed.addBlankField().addBlankField(true)

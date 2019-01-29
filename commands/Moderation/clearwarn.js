@@ -79,7 +79,8 @@ class clearwarnCommand extends Command {
                         }
                     } else {
                         warncol.deleteMany({
-                            'user': user.id
+                            'user': user.id,
+                            'server':msg.guild.id
                         }, (error, res) => {
                             if (error) {
                                 embed.setDescription("There was an error deleting the warnings.")
