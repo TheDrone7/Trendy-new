@@ -36,10 +36,25 @@ class unmuteCommand extends Command {
             if (err) {
                 console.error
             } else {
-
                 let dbo = db.db('trendy')
                 let muterole = msg.guild.roles.filter(role => role.name.toLowerCase().indexOf("muted") > -1).array()[0]
-
+                let mutecol = dbo.collection('mutes')
+                mutecol.findOneAndDelete({user: user.id, server: msg.guild.id},(error, res)=>{
+                    if(error) console.log(error)
+                    else {
+                        if(res.value == null){
+                            msg.reply(" the user wasn't even muted. 00f.")
+                        }
+                        else{
+                            user.removeRole(muterole).then(()=>{
+                                msg.say(`${user} was unmuted by **${msg.member.displayName}** \`${ms(res.value.duration-Date.now(),{long:true})}\` earlier than it was supposed to happen!`).then(message=>{
+                                    message.delete(10000)
+                                    user.send(`You have been unmuted in the server **${msg.guild}**.`)
+                                })
+                            })
+                        }
+                    }
+                })
             }
         })
 

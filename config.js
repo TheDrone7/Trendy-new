@@ -9,5 +9,7 @@ module.exports = {
     dictUrl: process.env.dictUrl,
     dictAccept: process.env.dictAccept,
     dictId: process.env.dictId,
-    dictKey: process.env.dictKey
+    dictKey: process.env.dictKey,
+    catApiKey: process.env.catApiKey,
+    fortApiKey: process.env.fortApiKey
 }

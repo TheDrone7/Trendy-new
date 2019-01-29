@@ -45,7 +45,6 @@ class muteCommand extends Command {
             }
         })
         embed.setThumbnail(this.client.user.avatarURL)
-            .setFooter('On ')
             .setTimestamp()
         let mutrole = null;
         let msduration = 86400000;

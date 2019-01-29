@@ -40,7 +40,8 @@ client.registry
         ['fun', '==>> Fun commands'],
         ['moderation', '==>> Moderation commands'],
         ['general', '==>> General Commands'],
-        ['role', '==>> Role Management']
+        ['role', '==>> Role Management'],
+        ['fort','==>> Fortnite Commands']
     ])
     .registerDefaults()
     .registerCommandsIn(path.join(__dirname, 'commands'));
@@ -111,22 +112,19 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
                 }
             })
 
-            client.setInterval(()=>{
-                mutecol.find().toArray().then(obj=>{
-                    obj.forEach(mute=>{
-                        if(Date.now() > mute.duration){
-                            let muterole = client.guilds.get(mute.server).roles.filter(rol=> rol.name.toLowerCase().indexOf("muted") > -1).array()[0]
-                            mutecol.deleteOne(mute,(error, result)=>{
-                                if(error)
-                                {
+            client.setInterval(() => {
+                mutecol.find().toArray().then(obj => {
+                    obj.forEach(mute => {
+                        if (Date.now() > mute.duration) {
+                            let muterole = client.guilds.get(mute.server).roles.filter(rol => rol.name.toLowerCase().indexOf("muted") > -1).array()[0]
+                            mutecol.deleteOne(mute, (error, result) => {
+                                if (error) {
                                     console.error(error)
                                     console.log("error")
-                                }
-                                else{
-                                    if(muterole)
-                                    {
+                                } else {
+                                    if (muterole) {
                                         console.log(muterole.name)
-                                        client.guilds.get(mute.server).members.get(mute.user).removeRole(muterole).then(mem=>{
+                                        client.guilds.get(mute.server).members.get(mute.user).removeRole(muterole).then(mem => {
                                             mem.send(`You have been unmuted in **${mem.guild.name}**.`).catch(console.error).then(console.log("Unmuted."))
                                         })
                                     }
@@ -135,7 +133,7 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
                         }
                     })
                 })
-            },10000)
+            }, 10000)
 
             // Update guilds and users info
             client.setInterval(() => {
@@ -176,109 +174,111 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
             if (message.author.bot) return
 
             // Check if the sender was afk, bring him online if yes
-            if (userdata) {
-                let user = userdata.find(obj => obj._id == author)
-                if (user) {
-                    if (user.status) {
-                        if (user.status.toLowerCase() == 'afk') {
-                            usercol.updateOne({
-                                '_id': author
-                            }, {
-                                $set: {
-                                    'status': 'online',
-                                    'reas': ''
-                                }
-                            }, (er, data) => {
-                                if (er)
-                                    return message.reply(" I was unable to set your status to online.")
-                                else {
-                                    return message.reply(" I see you've come back online")
-                                }
-                            })
-                            userdata[userdata.indexOf(user)].status = 'online'
-                            userdata[userdata.indexOf(user)].reas = ''
+            if (message.guild) {
+                if (userdata) {
+                    let user = userdata.find(obj => obj._id == author)
+                    if (user) {
+                        if (user.status) {
+                            if (user.status.toLowerCase() == 'afk') {
+                                usercol.updateOne({
+                                    '_id': author
+                                }, {
+                                    $set: {
+                                        'status': 'online',
+                                        'reas': ''
+                                    }
+                                }, (er, data) => {
+                                    if (er)
+                                        return message.reply(" I was unable to set your status to online.")
+                                    else {
+                                        return message.reply(" I see you've come back online")
+                                    }
+                                })
+                                userdata[userdata.indexOf(user)].status = 'online'
+                                userdata[userdata.indexOf(user)].reas = ''
+                            }
                         }
                     }
                 }
-            }
 
-            // Check if any afk members were @mentioned
-            if (message.mentions.members.array().length > 0) {
-                message.mentions.members.forEach(mem => {
-                    usercol.findOne({
-                        '_id': mem.id
-                    }, (err, res) => {
-                        if (err)
-                            console.error
-                        else {
-                            if (res) {
-                                if (res.status) {
-                                    if (res.status == 'afk')
-                                        message.reply(` **${mem.displayName}** is afk for **${res.reas}**.`)
+                // Check if any afk members were @mentioned
+                if (message.mentions.members.array().length > 0) {
+                    message.mentions.members.forEach(mem => {
+                        usercol.findOne({
+                            '_id': mem.id
+                        }, (err, res) => {
+                            if (err)
+                                console.error
+                            else {
+                                if (res) {
+                                    if (res.status) {
+                                        if (res.status == 'afk')
+                                            message.reply(` **${mem.displayName}** is afk for **${res.reas}**.`)
+                                    }
+                                } else {
+                                    return null
                                 }
-                            } else {
-                                return null
+                            }
+                        })
+                    })
+                }
+
+                // Talking
+
+                let msg = message.content.toLowerCase()
+
+                servcol.findOne({
+                    '_id': message.guild.id
+                }, (err, data) => {
+
+                    if (!err) {
+                        if (data) {
+                            if (data.talk == 'enable') {
+                                if (cooldata) {
+                                    let servercool = cooldata.find(obj => obj._id == message.guild.id)
+                                    if (servercool.hicool < Date.now())
+                                        if (msg == "hi" || msg == "hello" || msg == "yo" || msg.startsWith("hello ") || msg.startsWith("hi ") || msg == client.user || msg.startsWith("hey") || msg.startsWith("helo") || msg.startsWith("yo ") && message.author != client.user)
+                                            message.channel.send(hellorep[Math.floor(Math.random() * hellorep.length)] + message.member.user.username + "!").then(() => {
+                                                cooldata[cooldata.indexOf(servercool)].hicool = Date.now() + 300000
+                                                coolcol.updateOne({
+                                                    '_id': message.guild.id
+                                                }, {
+                                                    $set: {
+                                                        'hicool': Date.now() + 300000
+                                                    }
+                                                })
+                                            })
+                                    if (servercool.spcool < Date.now())
+                                        if (msg.indexOf("wassup") > -1 || msg.indexOf("wasup") > -1 || msg.indexOf("what's up") > -1)
+                                            message.channel.send(wasuprep[Math.floor(Math.random() * wasuprep.length)]).then(() => {
+                                                cooldata[cooldata.indexOf(servercool)].spcool = Date.now() + 300000
+                                                coolcol.updateOne({
+                                                    '_id': message.guild.id
+                                                }, {
+                                                    $set: {
+                                                        'spcool': Date.now() + 300000
+                                                    }
+                                                })
+                                            })
+                                    if (servercool.bicool < Date.now())
+                                        if (msg.indexOf("bye") > -1 || msg.indexOf("goodbye") > -1 || msg.startsWith(":wave:") || msg.indexOf("gtg") > -1 || msg.indexOf("cya") > -1)
+                                            message.channel.send(byerep[Math.floor(Math.random() * byerep.length)] + message.member.user.username + "!").then(() => {
+                                                cooldata[cooldata.indexOf(servercool)].bicool = Date.now() + 300000
+                                                coolcol.updateOne({
+                                                    '_id': message.guild.id
+                                                }, {
+                                                    $set: {
+                                                        'bicool': Date.now() + 300000
+                                                    }
+                                                })
+                                            })
+                                }
                             }
                         }
-                    })
+                    }
+
                 })
             }
-
-            // Talking
-
-            let msg = message.content.toLowerCase()
-
-            servcol.findOne({
-                '_id': message.guild.id
-            }, (err, data) => {
-
-                if (!err) {
-                    if (data) {
-                        if (data.talk == 'enable') {
-                            if (cooldata) {
-                                let servercool = cooldata.find(obj => obj._id == message.guild.id)
-                                if (servercool.hicool < Date.now())
-                                    if (msg == "hi" || msg == "hello" || msg == "yo" || msg.startsWith("hello ") || msg.startsWith("hi ") || msg == client.user || msg.startsWith("hey") || msg.startsWith("helo") || msg.startsWith("yo ") && message.author != client.user)
-                                        message.channel.send(hellorep[Math.floor(Math.random() * hellorep.length)] + message.member.user.username + "!").then(() => {
-                                            cooldata[cooldata.indexOf(servercool)].hicool = Date.now() + 300000
-                                            coolcol.updateOne({
-                                                '_id': message.guild.id
-                                            }, {
-                                                $set: {
-                                                    'hicool': Date.now() + 300000
-                                                }
-                                            })
-                                        })
-                                if (servercool.spcool < Date.now())
-                                    if (msg.indexOf("wassup") > -1 || msg.indexOf("wasup") > -1 || msg.indexOf("what's up") > -1)
-                                        message.channel.send(wasuprep[Math.floor(Math.random() * wasuprep.length)]).then(() => {
-                                            cooldata[cooldata.indexOf(servercool)].spcool = Date.now() + 300000
-                                            coolcol.updateOne({
-                                                '_id': message.guild.id
-                                            }, {
-                                                $set: {
-                                                    'spcool': Date.now() + 300000
-                                                }
-                                            })
-                                        })
-                                if (servercool.bicool < Date.now())
-                                    if (msg.indexOf("bye") > -1 || msg.indexOf("goodbye") > -1 || msg.startsWith(":wave:") || msg.indexOf("gtg") > -1 || msg.indexOf("cya") > -1)
-                                        message.channel.send(byerep[Math.floor(Math.random() * byerep.length)] + message.member.user.username + "!").then(() => {
-                                            cooldata[cooldata.indexOf(servercool)].bicool = Date.now() + 300000
-                                            coolcol.updateOne({
-                                                '_id': message.guild.id
-                                            }, {
-                                                $set: {
-                                                    'bicool': Date.now() + 300000
-                                                }
-                                            })
-                                        })
-                            }
-                        }
-                    }
-                }
-
-            })
 
             // End of talking
 
@@ -297,23 +297,24 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
                 }
             })
 
-                servcol.findOne({'_id':mem.guild.id},(err, res)=>{
+            servcol.findOne({
+                '_id': mem.guild.id
+            }, (err, res) => {
 
-                    if(!err){
-                        if(res){
-                            if(res.defrole != 'disabled'){
-                                try{
-                                    mem.addRole(mem.guild.roles.get(res.defrole))
-                                }
-                                catch(err){
-                                    console.error
-                                }
+                if (!err) {
+                    if (res) {
+                        if (res.defrole != 'disabled') {
+                            try {
+                                mem.addRole(mem.guild.roles.get(res.defrole))
+                            } catch (err) {
+                                console.error
                             }
                         }
                     }
+                }
 
-                })
-            
+            })
+
 
         })
 

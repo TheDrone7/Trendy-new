@@ -49,7 +49,7 @@ class warnCommand extends Command{
                     .addField('User',`\t${user}`, true)
                     .addField('By',`\t${msg.member}`, true)
                     .addField('Reason',`\t${reason}`, true)
-
+                    .setImage('http://bestanimations.com/Signs&Shapes/Hazards/warning-yellow-blinking-sign-animated-gif-3.gif')
                     msg.channel.send(embed).then(message=>{
                         message.react('☑')
                     })
