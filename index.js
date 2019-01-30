@@ -3,6 +3,7 @@ const path = require('path');
 const mongo = require('mongodb').MongoClient
 const sqlite = require('sqlite')
 const config = require('./config')
+const dblapi = require('dblapi.js')
 
 // Making the Bot
 const client = new Commando.CommandoClient({
@@ -10,6 +11,8 @@ const client = new Commando.CommandoClient({
     commandPrefix: '=',
     unknownCommandResponse: false
 })
+
+const dbl = new dblapi(config.dblApiKey, client)
 
 // The replies for talking
 
@@ -175,6 +178,9 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
                         }
                     })
                 })
+
+                dbl.postStats(client.guilds.size,client.shard.id,client.shard.count)
+
             }, 300000)
             console.log("Logged in...")
         })

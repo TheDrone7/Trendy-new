@@ -11,5 +11,6 @@ module.exports = {
     dictId: process.env.dictId,
     dictKey: process.env.dictKey,
     catApiKey: process.env.catApiKey,
-    fortApiKey: process.env.fortApiKey
+    fortApiKey: process.env.fortApiKey,
+    dblApiKey: process.env.dblApiKey
 }
