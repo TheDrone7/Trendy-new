@@ -87,6 +87,7 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
         })
         // After Logging in
         client.on('ready', () => {
+            client.user.setActivity("=help")
 
             console.log(client.user.avatarURL)
 
