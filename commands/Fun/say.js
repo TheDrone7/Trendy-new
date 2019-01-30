@@ -17,7 +17,7 @@ class sayCommand extends Command {
                 type: 'string'
             }],
             group: 'fun',
-            examples: ['..say Hello', '..say text', '..say you should probably die.'],
+            examples: ['=say Hello', '=say text', '=say you should probably die.'],
             userPermissions:['MANAGE_GUILD','MANAGE_MESSAGES']
         })
     }

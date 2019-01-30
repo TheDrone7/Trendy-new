@@ -22,7 +22,7 @@ class storeCommand extends Command {
             description: 'Shows the fortnite store.',
             details: 'Shows the daily fortnite store (and also more details if u want to search for them)',
             aliases: ['fortstores', 'fortnite-store', 'fort-store'],
-            examples: ['..fortstore']
+            examples: ['=fortstore']
         })
     }
 

@@ -16,7 +16,7 @@ class talkCommand extends Command {
             details: 'Turns on ( or off ) the talking feature i.e. autoresponder to things like `Hi` and `Bye`.\nMessages won\'t be sent more than once every five minutes and no spam is also guaranteed.',
             aliases: ['t'],
             group: 'general',
-            examples: ['..talk enable', '..talk disable'],
+            examples: ['=talk enable', '=talk disable'],
             guildOnly: true,
             args: [{
                 key: 'comm',

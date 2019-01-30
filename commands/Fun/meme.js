@@ -12,7 +12,7 @@ class memeCommand extends commmando.Command {
             aliases: ['memes', 'm', ],
             description: 'Displays a meme.',
             memberName: 'meme',
-            examples: ['..meme', '..memes','..m'],
+            examples: ['=meme', '=memes','=m'],
             group: 'fun',
             details: 'Gets a random meme from https://memes.com/ and shows it to you.'
         })

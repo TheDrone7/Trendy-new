@@ -8,7 +8,7 @@ class clearbotCommand extends Command{
             name: 'clearbot',
             memberName: 'clearbot',
             group: 'moderation',
-            examples: ['..clearbot'],
+            examples: ['=clearbot'],
             guildOnly: true,
             clientPermissions: ['MANAGE_CHANNELS','MANAGE_MESSAGES'],
             userPermissions: ['MANAGE_CHANNELS','MANAGE_MESSAGES'],

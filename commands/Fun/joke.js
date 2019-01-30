@@ -11,7 +11,7 @@ class jokeCommand extends Command{
             aliases: ['jokes'],
             description: 'Makes a joke.',
             details: 'Makes fun of you.',
-            examples: ['..joke','..jokes'],
+            examples: ['=joke','=jokes'],
             group: 'fun',
         })
 

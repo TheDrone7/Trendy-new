@@ -21,7 +21,7 @@ class ballCommand extends Command {
             group: 'fun',
             description: 'Sends a random reply.',
             details: 'Sends a random reply to your *yes/no* question.',
-            examples: ['..8ball should I leave?','..8ball is he stewpied?'],
+            examples: ['=8ball should I leave?','=8ball is he stewpied?'],
             args: [{
                 key: 'ques',
                 prompt: 'What is your question child?\n',

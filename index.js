@@ -7,7 +7,7 @@ const config = require('./config')
 // Making the Bot
 const client = new Commando.CommandoClient({
     owner: '374886124126208000',
-    commandPrefix: '..',
+    commandPrefix: '=',
     unknownCommandResponse: false
 })
 
@@ -46,7 +46,10 @@ client.registry
         ['support','==>> Support']
     ])
     .registerDefaults()
-    .registerCommandsIn(path.join(__dirname, 'commands'));
+    .commands.filter(command=> command.name.toLowerCase().indexOf('help') > -1).forEach(helpCommand=>{
+        client.registry.unregisterCommand(helpCommand)
+    })
+    client.registry.registerCommandsIn(path.join(__dirname, 'commands'))
 
 
 // Setting the settings provider
@@ -347,7 +350,7 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
 
             if (!saveUser) {
                 if (mem) {
-                    usercol.remove({
+                    usercol.findOneAndDelete({
                         '_id': mem
                     }, (err, res) => {
                         if (err) console.error

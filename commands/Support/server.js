@@ -9,7 +9,8 @@ class serverCommand extends Command{
             aliases: ['server','server'],
             group: 'support',
             description: 'Get an link to support server.',
-            details: 'Get a link to the bot\'s support server.'
+            details: 'Get a link to the bot\'s support server.',
+            examples: ['=server']
         })
     }
 

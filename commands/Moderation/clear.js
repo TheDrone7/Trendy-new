@@ -8,7 +8,7 @@ class clearCommand extends Command{
             name: 'clear',
             memberName: 'clear',
             group: 'moderation',
-            examples: ['..clear 20','..clear'],
+            examples: ['=clear 20','=clear'],
             guildOnly: true,
             clientPermissions: ['MANAGE_CHANNELS','MANAGE_MESSAGES'],
             userPermissions: ['MANAGE_CHANNELS','MANAGE_MESSAGES'],

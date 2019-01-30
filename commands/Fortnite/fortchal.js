@@ -22,7 +22,7 @@ class chalCommand extends Command {
             description: 'Shows the fortnite challenges.',
             details: 'Shows the list of daily fortnite challenges (and also more details if u want to search for them)',
             aliases: ['fortchals', 'fortnite-challenge', 'fort-challenges', 'fortnite-challenges'],
-            examples: ['..fortchal']
+            examples: ['=fortchal']
         })
     }
 

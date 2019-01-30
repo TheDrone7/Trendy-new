@@ -21,7 +21,7 @@ class catCommand extends Command{
             group: 'fun',
             description: 'Shows a cat image.',
             details: 'Gets a random cat, shows it\'s details.',
-            examples: ['..cat'],
+            examples: ['=cat'],
             throttling: {duration: 5,usages: 2}
         })
     }

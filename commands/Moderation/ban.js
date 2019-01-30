@@ -14,7 +14,7 @@ class banCommand extends Command{
             guildOnly: true,
             clientPermissions: ['BAN_MEMBERS'],
             userPermissions: ['BAN_MEMBERS'],
-            examples: ['..ban @HS','..ban @HS for being a liar.'],
+            examples: ['=ban @HS','=ban @HS for being a liar.'],
             args: [{
                 key: 'user',
                 type: 'member',

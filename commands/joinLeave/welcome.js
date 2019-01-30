@@ -13,7 +13,7 @@ class welCommand extends Command{
             aliases: ['wel','welcome-message','welcome-msg','wlcm-msg'],
             description: 'Sets the welcome message.',
             details: 'Sets the message to be sent to welcome a new user.\nUse \`{server}\` where you want the server name and \`{user}\` where you want the new-user name.\nThe default message is: -\n\nHello {user} and welcome to {server}.\nPlease enjoy your stay! :smile:',
-            examples: ['..welcome Welcome to {server}, {user}.'],
+            examples: ['=welcome Welcome to {server}, {user}.'],
             guildOnly: true,
             userPermissions: ['ADMINISTRATOR'],
             args: [{

@@ -23,7 +23,7 @@ class warnCommand extends Command{
                 type: 'string',
                 prompt: 'Why would you want to warn them?'
             }],
-            examples: ['..warn @HS for being a noob.','..warn @HS for destroying others\' lives.']
+            examples: ['=warn @HS for being a noob.','=warn @HS for destroying others\' lives.']
         })
     }
 

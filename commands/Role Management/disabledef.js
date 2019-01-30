@@ -11,7 +11,7 @@ class defdisableCommand extends Command {
             memberName: 'disabledefrole',
             group: 'role',
             aliases: ['default-disable', 'disable-defrole', 'disdef', 'defdis'],
-            examples: ['..disabledefrole', '..default-disable'],
+            examples: ['=disabledefrole', '=default-disable'],
             description: 'Resets the default joining role.',
             details: 'Resets the default role given to all members who join the server.',
             guildOnly: true,

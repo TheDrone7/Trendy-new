@@ -20,7 +20,7 @@ class warningCommand extends Command{
                 type: 'member',
                 prompt: 'Whose warnings would u like to see?'
             }],
-            examples: ['..warning @HS','..warnings @HS']
+            examples: ['=warning @HS','=warnings @HS']
         })
     }
 

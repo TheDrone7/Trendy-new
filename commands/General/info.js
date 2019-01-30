@@ -8,7 +8,7 @@ class infoCommand extends Command {
             memberName: 'info',
             description: 'Gets the bot\'s info.',
             details: 'Shows the bot\'s basic information to the user via DMs.',
-            examples: ['..info'],
+            examples: ['=info'],
             group: 'general'
         })
     }

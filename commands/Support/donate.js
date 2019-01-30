@@ -9,6 +9,7 @@ class donateCommand extends Command{
             group: 'support',
             description: 'Donate the devs',
             details: 'Get the paypal link to donate the developers if you appreciate the work that much.',
+            examples: ['=donate']
         })
     }
 

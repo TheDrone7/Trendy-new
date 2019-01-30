@@ -11,7 +11,7 @@ class jldisableCommand extends Command {
             memberName: 'disable-jl',
             group: 'jl',
             aliases: ['jl-disable', 'disablejl', 'disjl', 'jldis'],
-            examples: ['..disablejl', '..jl-disable'],
+            examples: ['=disablejl', '=jl-disable'],
             description: 'Disables the join-leave messages.',
             details: 'Disables the join-leave messages sent when an user join or leaves the server.',
             guildOnly: true,

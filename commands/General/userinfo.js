@@ -11,7 +11,7 @@ class uiCommand extends Command{
             aliases: ['ui'],
             description: 'Shows the user\'s info.',
             details: 'Gathers data about a user and shows it to you.',
-            examples: ['..userinfo','..userinfo @Someone#0011'],
+            examples: ['=userinfo','=userinfo @Someone#0011'],
             group: 'general',
             guildOnly: true,
             userPermissions: ['KICK_MEMBERS'],

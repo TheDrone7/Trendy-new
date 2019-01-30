@@ -13,7 +13,7 @@ class leCommand extends Command{
             aliases: ['leave-message','leave-msg'],
             description: 'Sets the goodbye message.',
             details: 'Sets the message to be sent to say bye to a leaving user.\nUse \`{server}\` where you want the server name and \`{user}\` where you want the new-user name.\nThe default message is: -\n\nGoodbye {user} :wave:! :cry:',
-            examples: ['..leave R.I.P. {user}.'],
+            examples: ['=leave R.I.P. {user}.'],
             guildOnly: true,
             userPermissions: ['ADMINISTRATOR'],
             args: [{

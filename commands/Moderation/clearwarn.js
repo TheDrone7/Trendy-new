@@ -27,7 +27,7 @@ class clearwarnCommand extends Command {
                 prompt: 'Which warning would you like to delete?',
                 default: -1
             }],
-            examples: ['..clearwarn @HS 1', '..clearwarn @HS']
+            examples: ['=clearwarn @HS 1', '=clearwarn @HS']
         })
     }
 

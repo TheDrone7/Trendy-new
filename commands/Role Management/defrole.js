@@ -11,7 +11,7 @@ class defroleCommand extends Command{
             memberName: 'defrole',
             group: 'role',
             aliases: ['default-role'],
-            examples: ['..defrole @MyRole','..default-role @MyRole'],
+            examples: ['=defrole @MyRole','=default-role @MyRole'],
             description: 'Sets the default joining role.',
             details: 'Sets the default role given to all members who join the server.',
             guildOnly: true,

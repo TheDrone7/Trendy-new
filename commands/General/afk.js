@@ -12,7 +12,7 @@ class afkCommand extends Command{
             memberName: 'afk',
             description: 'Sets your status to `afk`',
             details: 'Sets your status to `afk` and notifies about it to anyone who @mentions you (May also provide reason).',
-            examples: ['..afk','..afk going to school.'],
+            examples: ['=afk','=afk going to school.'],
             group: 'general',
             guildOnly: true,
             args: [

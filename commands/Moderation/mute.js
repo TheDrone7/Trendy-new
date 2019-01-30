@@ -19,7 +19,7 @@ class muteCommand extends Command {
             guildOnly: true,
             clientPermissions: ['MANAGE_ROLES'],
             userPermissions: ['BAN_MEMBERS'],
-            examples: ['..mute @HS', '..mute @HS 2 days.'],
+            examples: ['=mute @HS', '=mute @HS 2 days.'],
             args: [{
                 key: 'user',
                 type: 'member',

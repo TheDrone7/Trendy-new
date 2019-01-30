@@ -11,7 +11,7 @@ class remRoleCommand extends Command{
             group: 'role',
             description: 'Removes a role from a user.',
             details: 'Removes the @mentioned-role from the @mentioned-user.',
-            examples: ['..remrole @HS @dev'],
+            examples: ['=remrole @HS @dev'],
             clientPermissions: ['MANAGE_ROLES'],
             userPermissions: ['MANAGE_ROLES'],
             args: [{

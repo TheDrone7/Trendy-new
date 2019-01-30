@@ -14,7 +14,7 @@ class kickCommand extends Command{
             guildOnly: true,
             clientPermissions: ['KICK_MEMBERS'],
             userPermissions: ['KICK_MEMBERS'],
-            examples: ['..kick @HS','..kick @HS for being a liar.'],
+            examples: ['=kick @HS','=kick @HS for being a liar.'],
             args: [{
                 key: 'user',
                 type: 'member',

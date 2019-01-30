@@ -11,7 +11,7 @@ class siCommand extends Command{
             aliases: ['si'],
             description: 'Shows the server\'s info.',
             details: 'Gathers data about a server and shows it to you.',
-            examples: ['..serverinfo'],
+            examples: ['=serverinfo'],
             group: 'general',
             guildOnly: true,
             userPermissions: ['MANAGE_GUILD']

@@ -10,7 +10,7 @@ class suggestCommand extends Command{
             group: 'support',
             description: 'Suggest a new feature for the bot to the dev.',
             details: 'Notify the developer of a feature that you would like to see in me.',
-            examples: ['..suggest add a meme command.'],
+            examples: ['=suggest add a meme command.'],
             args: [{
                 key:'suggestion',
                 type: 'string',

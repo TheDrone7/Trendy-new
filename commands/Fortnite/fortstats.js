@@ -22,7 +22,7 @@ class statsCommand extends Command {
             description: 'Shows the fortnite stats.',
             details: 'Search for your fortnite stats and share them with others.\nYour stats might not be available, so sorry if that is the case.',
             aliases: ['fortstat', 'fortnite', 'fortnite-stats', 'fort-stats'],
-            examples: ['..fortstats', '..forstats pc TheDrone7'],
+            examples: ['=fortstats', '=forstats pc TheDrone7'],
             args: [{
                 key: 'platform',
                 prompt: 'Which platform do you play on?',

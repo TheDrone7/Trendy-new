@@ -9,6 +9,7 @@ class inviteCommand extends Command{
             group: 'support',
             description: 'Get an invite link.',
             details: 'Get an invite link to invite the bot to your own server',
+            examples: ['=invite']
         })
     }
 

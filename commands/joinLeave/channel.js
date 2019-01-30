@@ -13,7 +13,7 @@ class chanCommand extends Command{
             aliases: ['chan','jl-channel','jl-chan'],
             description: 'Sets the join-leave channel.',
             details: 'Sets the channel where the join-leave messages will be sent.',
-            examples: ['..channel #join-leave'],
+            examples: ['=channel #join-leave'],
             guildOnly: true,
             userPermissions: ['ADMINISTRATOR'],
             args: [{

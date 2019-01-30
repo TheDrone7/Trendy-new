@@ -18,7 +18,7 @@ class dictCommand extends Command{
                 type: 'string',
                 prompt: 'What would you like to search for?'
             }],
-            examples: ['..dict ace','..wordsearch word','..dictionary well']
+            examples: ['=dict ace','=wordsearch word','=dictionary well']
         })
     }
 

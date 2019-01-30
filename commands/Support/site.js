@@ -9,7 +9,8 @@ class webCommand extends Command{
             aliases: ['website','web'],
             group: 'support',
             description: 'Get an link to the website.',
-            details: 'Get a link to the bot\'s website.'
+            details: 'Get a link to the bot\'s website.',
+            examples: ['=site']
         })
     }
 

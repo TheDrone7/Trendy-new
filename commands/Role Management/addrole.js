@@ -11,7 +11,7 @@ class addRoleCommand extends Command{
             group: 'role',
             description: 'Assigns a user a role.',
             details: 'Adds the @mentioned-role to the @mentioned-user.',
-            examples: ['..addrole @HS @dev'],
+            examples: ['=addrole @HS @dev'],
             clientPermissions: ['MANAGE_ROLES'],
             userPermissions: ['MANAGE_ROLES'],
             args: [{
