@@ -299,6 +299,10 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
 
             // End of talking
 
+            if(message.content === 'sc' && client.isOwner(message.author) && message.channel.type === 'dm'){
+                message.author.send(`${client.guilds.size} servers!`)
+            }
+
             //End of on Message
         })
 
