@@ -179,7 +179,7 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
                     })
                 })
 
-                dbl.postStats(client.guilds.size,client.shard.id,client.shard.count)
+                dbl.postStats(client.guilds.size)
 
             }, 300000)
             console.log("Logged in...")
