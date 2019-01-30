@@ -41,7 +41,9 @@ client.registry
         ['moderation', '==>> Moderation commands'],
         ['general', '==>> General Commands'],
         ['role', '==>> Role Management'],
-        ['fort','==>> Fortnite Commands']
+        ['fort', '==>> Fortnite Commands'],
+        ['jl', '==>> Join-Leave Logging'],
+        ['support','==>> Support']
     ])
     .registerDefaults()
     .registerCommandsIn(path.join(__dirname, 'commands'));
@@ -82,6 +84,8 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
         })
         // After Logging in
         client.on('ready', () => {
+
+            console.log(client.user.avatarURL)
 
             client.setInterval(() => {
                 usercol.find().toArray().then(o => {
@@ -156,7 +160,10 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
                         '_id': guild.id,
                         'name': guild.name,
                         'talk': 'disable',
-                        'defrole': 'disabled'
+                        'defrole': 'disabled',
+                        'welcome': 'Hello {user} and welcome to {server}.\nPlease enjoy your stay! :smile:',
+                        'leave': 'Goodbye {user} :wave:! :cry:',
+                        'channel': 'disabled'
                     }
                     servcol.insertOne(guildDoc, (err, res) => {
                         if (!err) {
@@ -286,6 +293,7 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
         })
 
         client.on('guildMemberAdd', (mem) => {
+
             let memDoc = {
                 '_id': mem.id,
                 'status': 'online',
@@ -310,6 +318,14 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
                                 console.error
                             }
                         }
+                        if (res.channel != 'disabled') {
+                            try {
+                                let msgToSend = res.welcome.replace('{server}', mem.guild.name).replace('{user}', mem)
+                                client.channels.get(res.channel).send(msgToSend)
+                            } catch (err) {
+                                console.error
+                            }
+                        }
                     }
                 }
 
@@ -318,21 +334,21 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
 
         })
 
-        client.on('guildMemberRemove', (guild, user) => {
+        client.on('guildMemberRemove', (mem) => {
             let saveUser = false
             client.guilds.forEach(server => {
-                server.members.forEach(mem => {
-                    if (mem && user)
-                        if (mem.id == user.id)
+                server.members.forEach(member => {
+                    if (member && mem)
+                        if (mem.id == member.id)
                             saveUser = true
 
                 })
             })
 
             if (!saveUser) {
-                if (user) {
+                if (mem) {
                     usercol.remove({
-                        '_id': user.id
+                        '_id': mem
                     }, (err, res) => {
                         if (err) console.error
                         else {
@@ -341,8 +357,25 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
                     })
                 }
             }
-        })
 
+            servcol.findOne({
+                '_id': mem.guild.id
+            }, (err, res) => {
+
+                if (!err) {
+                    if (res) {
+                        if (res.channel != 'disabled') {
+                            try {
+                                let msgToSend = res.leave.replace('{server}', mem.guild.name).replace('{user}', mem.displayName)
+                                client.channels.get(res.channel).send(msgToSend)
+                            } catch (err) {
+                                console.error
+                            }
+                        }
+                    }
+                }
+            })
+        })
     }
 })
 
