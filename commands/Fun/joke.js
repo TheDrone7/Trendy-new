@@ -23,9 +23,9 @@ class jokeCommand extends Command{
                 var resp = JSON.parse(body)
                 if(resp.type == "success"){
                     if(msg.guild)
-                        return msg.say(resp.value.joke.toString().replace("Chuck Norris",msg.member.displayName))
+                        return msg.say(resp.value.joke.toString().replace(/Chuck Norris/g ,msg.member.displayName))
                     else
-                        return msg.direct(resp.value.joke.toString().replace("Chuck Norris",msg.author.username))
+                        return msg.direct(resp.value.joke.toString().replace(/Chuck Norris/g,msg.author.username))
                 }
                 else{
                     return msg.say("Couldn't generate joke.")
