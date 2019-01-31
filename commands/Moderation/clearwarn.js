@@ -66,7 +66,7 @@ class clearwarnCommand extends Command {
                                     embed.addField("Moderator", warnToDelete.mod, true)
                                     embed.addField("Reason", warnToDelete.reason, true)
                                     embed.addField("User", `<@${warnToDelete.user}>`, true)
-                                    embed.setColor("GREEN")
+                                    embed.setColor(0x00ff00)
                                 }
                                 msg.channel.send(embed).then(message => {
                                     message.react('☑')
@@ -88,7 +88,7 @@ class clearwarnCommand extends Command {
                                 msg.embed(embed)
                             } else {
                                 embed.setDescription(`All warnings deleted for user ${user}.`)
-                                    .setColor("GREEN")
+                                    .setColor(0x00ff00)
                                 msg.channel.send(embed).then(message => {
                                     message.react('☑')
                                 })
@@ -97,7 +97,7 @@ class clearwarnCommand extends Command {
                     }
                 } else {
                     embed.setDescription("The user currently has no warnings.")
-                    embed.setColor("GREEN")
+                    embed.setColor(0x00ff00)
                     msg.embed(embed)
                 }
 

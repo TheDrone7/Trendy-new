@@ -20,7 +20,7 @@ class infoCommand extends Command {
         embed.addField("About ME", "Hi! I am a bot created by ** :pisces:S#1624 ** and the founder is ** Amir **, I have some fun commands and mod commands! Thank you for inviting me to your server, and if regard of anymore info or report join the following link, talk to the creator and he shall fix it.");
         embed.addField("Support Server", "https://discord.gg/hjC7k6Y");
         embed.addField("Help","Use `" + this.client.commandPrefix + "help` command in any server or simply `help` command in DMs to see a list of commands");
-        embed.setColor("GREEN")
+        embed.setColor(0x00ff00)
         try{
             await msg.direct(embed)
             if(msg.channel.type !== 'dm'){

@@ -26,7 +26,7 @@ class reportCommand extends Command{
     run(msg, {report}){
         let embed = new discord.RichEmbed()
         embed.setTitle('Report')
-        .setColor('GREEN').setTimestamp().setThumbnail(msg.author.avatarURL)
+        .setColor('0x00ff00').setTimestamp().setThumbnail(msg.author.avatarURL)
         .addField('User',msg.author.username,true).addField('Server',msg.guild.name || "DMs", true)
         .addField('Report',report)
         this.client.channels.get('540076896499531786').send(embed).then(()=>{

@@ -69,7 +69,7 @@ class statsCommand extends Command {
                 let fortembed = new discord.RichEmbed();
                 fortembed.setTitle(epicname + "'s Stats")
                 .setThumbnail("https://banner2.kisspng.com/20180828/kba/kisspng-fortnite-battle-royale-video-games-clip-art-battle-5b8581d2e693f2.2860033415354761789445.jpg")
-                .setColor("GREEN")
+                .setColor(0x00ff00)
                 if(msg.guild)
                     fortembed.setFooter("Requested by: " + msg.member.displayName+" ",msg.author.avatarURL).setTimestamp();
                 else

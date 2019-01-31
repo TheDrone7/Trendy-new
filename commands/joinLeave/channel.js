@@ -32,7 +32,7 @@ class chanCommand extends Command{
                 servcol.updateOne({'_id':msg.guild.id},{$set: {'channel': channel.id}},(err,res)=>{
                     if(!err){
                         let embed = new discord.RichEmbed()
-                        embed.setTitle('Join-Leave Channel').setColor('GREEN').setAuthor(msg.member.displayName,msg.author.avatarURL)
+                        embed.setTitle('Join-Leave Channel').setColor('0x00ff00').setAuthor(msg.member.displayName,msg.author.avatarURL)
                         .setFooter('Updated ', this.client.user.avatarURL).setTimestamp()
                         .addField('Status', 'Success').addField('New Channel',channel)
                         msg.embed(embed)

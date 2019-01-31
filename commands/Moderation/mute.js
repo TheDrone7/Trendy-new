@@ -80,7 +80,7 @@ class muteCommand extends Command {
                                     mutecol.insertOne(newMute, (er, result) => {
                                         if (!er) {
                                             user.addRole(mutrole).then(() => {
-                                                embed.setColor("GREEN")
+                                                embed.setColor(0x00ff00)
                                                     .addField('User', user, true)
                                                     .addField('Moderator', msg.member, true)
                                                     .addField('Duration', ms(msduration,{long: true}))
@@ -96,7 +96,7 @@ class muteCommand extends Command {
                                     })
                                 } else {
                                     user.addRole(mutrole).then(() => {
-                                        embed.setColor("GREEN")
+                                        embed.setColor(0x00ff00)
                                             .addField('User', user, true)
                                             .addField('Moderator', msg.member, true)
                                             .addField('Duration', ms(msduration, {long: true}))
@@ -146,7 +146,7 @@ class muteCommand extends Command {
                                     mutecol.insertOne(newMute, (er, result) => {
                                         if (!er) {
                                             user.addRole(mutrole).then(() => {
-                                                embed.setColor("GREEN")
+                                                embed.setColor(0x00ff00)
                                                     .addField('User', user, true)
                                                     .addField('Moderator', msg.member, true)
                                                     .addField('Duration', ms(msduration,{long: true}))
@@ -165,7 +165,7 @@ class muteCommand extends Command {
                                     })
                                 } else {
                                     user.addRole(mutrole).then(() => {
-                                        embed.setColor("GREEN")
+                                        embed.setColor(0x00ff00)
                                             .addField('User', user, true)
                                             .addField('Moderator', msg.member, true)
                                             .addField('Duration', ms(msduration,{long: true}))

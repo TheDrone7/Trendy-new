@@ -39,7 +39,7 @@ class afkCommand extends Command{
                         return msg.say("Couldn't set your status to `AFK`")
                     else{
                         let embed = new discord.RichEmbed()
-                        embed.setColor("GREEN")
+                        embed.setColor(0x00ff00)
                         embed.setTitle("Status Set!")
                         embed.addField("Name", msg.member.displayName)
                         embed.addField("Status","AFK", true)

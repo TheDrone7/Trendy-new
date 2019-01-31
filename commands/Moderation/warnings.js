@@ -46,7 +46,7 @@ class warningCommand extends Command{
                 }
                 else{
                     embed.setDescription("The user currently has no warnings")
-                    embed.setColor("GREEN")
+                    embed.setColor(0x00ff00)
                 }
                 msg.embed(embed)
             })

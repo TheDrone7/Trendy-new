@@ -32,7 +32,7 @@ class leCommand extends Command{
                 servcol.updateOne({'_id':msg.guild.id},{$set: {'leave': message}},(err,res)=>{
                     if(!err){
                         let embed = new discord.RichEmbed()
-                        embed.setTitle('Leave Message').setColor('GREEN').setAuthor(msg.member.displayName,msg.author.avatarURL)
+                        embed.setTitle('Leave Message').setColor('0x00ff00').setAuthor(msg.member.displayName,msg.author.avatarURL)
                         .setFooter('Updated ', this.client.user.avatarURL).setTimestamp()
                         .addField('Status', 'Success').addField('New Message',message)
                         msg.embed(embed)

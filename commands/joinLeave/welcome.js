@@ -32,7 +32,7 @@ class welCommand extends Command{
                 servcol.updateOne({'_id':msg.guild.id},{$set: {'welcome': message}},(err,res)=>{
                     if(!err){
                         let embed = new discord.RichEmbed()
-                        embed.setTitle('Welcome Message').setColor('GREEN').setAuthor(msg.member.displayName,msg.author.avatarURL)
+                        embed.setTitle('Welcome Message').setColor('0x00ff00').setAuthor(msg.member.displayName,msg.author.avatarURL)
                         .setFooter('Updated ', this.client.user.avatarURL).setTimestamp()
                         .addField('Status', 'Success').addField('New Message',message)
                         msg.embed(embed)

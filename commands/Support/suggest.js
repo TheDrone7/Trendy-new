@@ -26,7 +26,7 @@ class suggestCommand extends Command{
     run(msg, {suggestion}){
         let embed = new discord.RichEmbed()
         embed.setTitle('Suggestion')
-        .setColor('GREEN').setTimestamp().setThumbnail(msg.author.avatarURL)
+        .setColor('0x00ff00').setTimestamp().setThumbnail(msg.author.avatarURL)
         .addField('User',msg.author.username,true).addField('Server',msg.guild.name || "DMs", true)
         .addField('Suggestion',suggestion)
         this.client.channels.get('540076804157734912').send(embed).then(()=>{
