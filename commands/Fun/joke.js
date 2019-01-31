@@ -22,7 +22,10 @@ class jokeCommand extends Command{
             if(!error && response.statusCode == 200){
                 var resp = JSON.parse(body)
                 if(resp.type == "success"){
-                    msg.say(resp.value.joke.toString().replace("Chuck Norris",msg.member.displayName))
+                    if(msg.guild)
+                        return msg.say(resp.value.joke.toString().replace("Chuck Norris",msg.member.displayName))
+                    else
+                        return msg.direct(resp.value.joke.toString().replace("Chuck Norris",msg.author.username))
                 }
                 else{
                     return msg.say("Couldn't generate joke.")
