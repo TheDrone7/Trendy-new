@@ -8,8 +8,8 @@ class reportCommand extends Command{
             name: 'report',
             memberName: 'report',
             group: 'support',
-            description: 'Suggest a new feature for the bot to the dev.',
-            details: 'Notify the developer of a feature that you would like to see in me.',
+            description: 'Report an issue.',
+            details: 'Notify the developer of an issue with the bot.',
             examples: ['=report I keep getting an error on using the \'channel\' command.'],
             args: [{
                 key:'report',
