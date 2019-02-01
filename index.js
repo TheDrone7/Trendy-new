@@ -228,9 +228,14 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
                                 console.error
                             else {
                                 if (res) {
+                                    console.log(res)
                                     if (res.status) {
+                                        console.log(res.status)
                                         if (res.status == 'afk')
+                                        {
+                                            console.log('afk')
                                             message.reply(` **${mem.displayName}** is afk for **${res.reas}**.`)
+                                        }
                                     }
                                 } else {
                                     return null
