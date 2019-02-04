@@ -1,6 +1,7 @@
 const Commando = require("discord.js-commando");
 const path = require('path');
 const mongo = require('mongodb').MongoClient
+const ms = require('ms')
 const sqlite = require('sqlite')
 const config = require('./config')
 const dblapi = require('dblapi.js')
@@ -13,6 +14,7 @@ const client = new Commando.CommandoClient({
 })
 
 const dbl = new dblapi(config.dblApiKey, client)
+let commandUsage = 0
 
 // The replies for talking
 
@@ -306,6 +308,8 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
 
             if(message.content === 'sc' && client.isOwner(message.author) && message.channel.type === 'dm'){
                 message.author.send(`${client.guilds.size} servers!`)
+                message.author.send(`Uptime: ${ms(client.uptime)}`)
+                message.author.send(`Commands used: ${commandUsage}`)
             }
 
             //End of on Message
@@ -396,6 +400,10 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
             })
         })
     }
+})
+
+client.on('commandRun',()=>{
+    commandUsage++;
 })
 
 client.login(config.token)
