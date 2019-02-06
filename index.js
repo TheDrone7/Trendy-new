@@ -317,7 +317,7 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
                         {name:'Guild count',value:client.guilds.size,inline: true},
                         {name:'Uptime',value: ms(client.uptime), inline: true},
                         {name:'Commands used since last restart',value:commandUsage.toString()},
-                        {name:'Pings',value:client.pings}
+                        {name:'Pings',value:client.pings.toString()}
                     ]
                 })
                 usercol.find().toArray().then(arr=>{
