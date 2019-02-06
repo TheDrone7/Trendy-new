@@ -1,4 +1,5 @@
 const Commando = require("discord.js-commando");
+const {RichEmbed} = require('discord.js')
 const path = require('path');
 const mongo = require('mongodb').MongoClient
 const ms = require('ms')
@@ -307,9 +308,24 @@ mongo.connect(`mongodb://${config.dbUser}:${config.dbPass}@ds026658.mlab.com:266
             // End of talking
 
             if(message.content === 'sc' && client.isOwner(message.author) && message.channel.type === 'dm'){
-                message.author.send(`${client.guilds.size} servers!`)
-                message.author.send(`Uptime: ${ms(client.uptime)}`)
-                message.author.send(`Commands used: ${commandUsage}`)
+                let embed = new RichEmbed({
+                    'title':'Status',
+                    'color':0x00ffff,
+                    'footer': 'As of',
+                    'timestamp': Date.now(),
+                    'fields':[
+                        {name:'Guild count',value:client.guilds.size,inline: true},
+                        {name:'Uptime',value: ms(client.uptime), inline: true},
+                        {name:'Commands used since last restart',value:commandUsage.toString()},
+                        {name:'Pings',value:client.pings}
+                    ]
+                })
+                usercol.find().toArray().then(arr=>{
+                    embed.addField('Number of users in DB',arr.length)
+                    .addField('Time taken to complete transaction',`\`${Date.now() - message.createdTimestamp}\`ms`)
+                    .setTimestamp()
+                    message.author.send(embed)
+                })
             }
 
             //End of on Message
