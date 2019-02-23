@@ -15,7 +15,7 @@ class serverCommand extends Command{
     }
 
     run(msg){
-        return msg.reply(" here's the link: -\nhttps://discord.gg/zggcZbJ")
+        return msg.reply(" here's the link: -\nhttps://discord.gg/4mmeuEV")
     }
 
 }

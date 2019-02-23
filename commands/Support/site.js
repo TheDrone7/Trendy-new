@@ -15,7 +15,7 @@ class webCommand extends Command{
     }
 
     run(msg){
-        return msg.reply(" here's the link: -\nhttp://trendy-bot.net16.net")
+        return msg.reply(" here's the link: -\nhttps://Trendy.thedrone7.repl.co")
     }
 
 }
