@@ -22,7 +22,10 @@ class memeCommand extends commmando.Command {
         let embed = new RichEmbed()
         embed.setColor("RANDOM")
         embed.setImage(getmeme())
-        return msg.embed(embed)
+        if(msg.guild.id == "437048931827056642")
+            return msg.channel.send(`${msg.author}, the \`meme\` command has been disabled.`)
+        else
+            return msg.embed(embed)
     }
 
 }
